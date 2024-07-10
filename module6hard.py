@@ -30,21 +30,13 @@ class Figure:
             self.__color = [r, g, b]
 
     def __is_valid_sides(self, *sides):
-        # Проверка количества сторон
         if len(sides) != self.sides_count:
             return False
-
-        # Проверка каждого значения стороны
         for side in sides:
-            # Проверка типа данных (должно быть целым числом)
             if not isinstance(side, int):
                 return False
-
-            # Проверка значения (должно быть больше 0)
             if side <= 0:
                 return False
-
-        # Если все проверки пройдены, то стороны валидны
         return True
 
     def get_sides(self):
