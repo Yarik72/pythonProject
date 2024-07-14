@@ -23,7 +23,7 @@ class WordsFinder:
     def count(self, word):
         result = {}
         for name, words in self.get_all_words().items():
-            result[name] = words.count(word.lower())+1
+            result[name] = words.count(word.lower())
         return result
 
 finder2 = WordsFinder('test_file.txt')
