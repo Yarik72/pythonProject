@@ -8,7 +8,6 @@ class Knight(Thread):
         self.power = power
 
     def run(self):
-        # enemy_list = 0
         enemy = 100
         number_of_days = 0
         print(f"{self.name}, на нас напали!")
