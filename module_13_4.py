@@ -4,9 +4,17 @@ import asyncio
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
 
-api = ''
+api = '7542223250:AAFy0jX2bAMBQjxS2KOuIA-DvHkY526iVfk'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+
+@dp.message_handler(commands=['start'])
+async def start(message):
+    await message.answer('Привет! Я бот помогающий твоему здоровью.')
+
+
+
 
 
 class UserState(StatesGroup):
@@ -28,16 +36,6 @@ async def set_growth(message, state):
     await UserState.growth.set()
 
 
-@dp.message_handler(commands=['start'])
-async def start(message):
-    await message.answer('Привет! Я бот помогающий твоему здоровью.')
-
-
-@dp.message_handler()
-async def all_massages(message):
-    await message.answer('Введите команду /start, чтобы начать общение.')
-
-
 @dp.message_handler(state=UserState.growth)
 async def set_weight(message, state):
     await state.update_data(growth=message.text)
@@ -53,6 +51,9 @@ async def set_weight(message, state):
     await message.answer(f'Ваша норма калорий {result}')
     await state.finish()
 
+@dp.message_handler()
+async def all_massages(message):
+    await message.answer('Введите команду /start, чтобы начать общение.')
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
