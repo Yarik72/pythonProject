@@ -47,7 +47,7 @@ async def set_weight(message, state):
 
 
 @dp.message_handler(state=UserState.weight)
-async def set_weight(message, state):
+async def send_calories(message, state):
     await state.update_data(weight=message.text)
     data = await state.get_data()
     result = 10 * float(data['weight']) + 6.25 * float(data['growth']) - 5 * float(data['age']) + 5
