@@ -26,10 +26,10 @@ inline_button2 = InlineKeyboardButton(text='Формулы расчёта', call
 inline_kb.add(inline_button1, inline_button2)
 
 inline_kb2 = InlineKeyboardMarkup(resize_keyboard=True)
-inline_button_product1 = InlineKeyboardButton(text='Продукт 1"', callback_data='product_buying')
-inline_button_product2 = InlineKeyboardButton(text='Продукт 2"', callback_data='product_buying')
-inline_button_product3 = InlineKeyboardButton(text='Продукт 3"', callback_data='product_buying')
-inline_button_product4 = InlineKeyboardButton(text='Продукт 4"', callback_data='product_buying')
+inline_button_product1 = InlineKeyboardButton(text='Продукт 1', callback_data='product_buying')
+inline_button_product2 = InlineKeyboardButton(text='Продукт 2', callback_data='product_buying')
+inline_button_product3 = InlineKeyboardButton(text='Продукт 3', callback_data='product_buying')
+inline_button_product4 = InlineKeyboardButton(text='Продукт 4', callback_data='product_buying')
 
 
 inline_kb2.add(inline_button_product1,inline_button_product2,inline_button_product3,inline_button_product4)
