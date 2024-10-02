@@ -1,28 +1,40 @@
 import sqlite3
 
-connection = sqlite3.connect("initiate.db")
-cursor = connection.cursor()
-
 
 def initiate_db():
     connection = sqlite3.connect("initiate.db")
     cursor = connection.cursor()
+
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Products(
+    CREATE TABLE IF NOT EXISTS Users(
         id INTEGER PRIMARY KEY,
-        title TEXT NOT NULL,
-        description TEXT,
-        price INTEGER NOT NULL
+        username TEXT NOT NULL,
+        email TEXT NOT NULL,
+        age INTEGER NOT NULL,
+        balance INTEGER NOT NULL
     )
     ''')
+
     connection.commit()
     connection.close()
 
-# initiate_db()
-# for i in range(1, 5):
-#     cursor.execute("INSERT INTO Products (title, description, price) VALUES (?, ?, ?)", (f"Продукт {i}",
-#                                                                                          f"Описание {i}",
-#                                                                                          i * 100))
+
+def add_user(username, email, age):
+    connection = sqlite3.connect("initiate.db")
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)",
+                   (username, email, age, 1000))
+    connection.commit()
+    connection.close()
+
+
+def is_included(username):
+    connection = sqlite3.connect("initiate.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Users WHERE username=?", (username,))
+    user_exists = cursor.fetchone() is not None
+    connection.close()
+    return user_exists
 
 
 def get_all_products():
@@ -32,6 +44,3 @@ def get_all_products():
     products = cursor.fetchall()
     connection.close()
     return products
-
-
-
