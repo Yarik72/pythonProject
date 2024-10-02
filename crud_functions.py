@@ -15,6 +15,15 @@ def initiate_db():
     )
     ''')
 
+    cursor.execute('''
+       CREATE TABLE IF NOT EXISTS Products(
+           id INTEGER PRIMARY KEY,
+           title TEXT NOT NULL,
+           description TEXT NOT NULL,
+           price INTEGER NOT NULL
+       )
+       ''')
+
     connection.commit()
     connection.close()
 
