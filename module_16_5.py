@@ -22,7 +22,7 @@ async def get_all(request: Request) -> HTMLResponse:
 
 
 @app.get('/user/{user_id}')
-async def get_users(request: Request, user_id: int) -> HTMLResponse:
+async def get_users(request: Request, user_id: Annotated[int, Path(ge=1, le=100, description='Enter User ID', example=1)]) -> HTMLResponse:
     return templates.TemplateResponse('users.html', {'request': request, 'user': users[user_id - 1]})
 
 
